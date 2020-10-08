@@ -3,7 +3,7 @@ class CreateGigs < ActiveRecord::Migration[6.0]
     create_table :gigs do |t|
       t.belongs_to :casting_director, null: false, foreign_key: true
       t.string :title
-      t.string :type
+      t.string :gig_type
       t.boolean :union
       t.string :producer
       t.string :director
@@ -15,7 +15,6 @@ class CreateGigs < ActiveRecord::Migration[6.0]
       t.string :pay_rate
       t.date :audition_date
       t.string :audition_location
-      t.string :roles, default: [], array: true
 
       t.timestamps
     end
