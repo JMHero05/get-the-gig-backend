@@ -58,19 +58,18 @@ ActiveRecord::Schema.define(version: 2020_10_08_213621) do
   create_table "gigs", force: :cascade do |t|
     t.bigint "casting_director_id", null: false
     t.string "title"
-    t.string "type"
+    t.string "gig_type"
     t.boolean "union"
     t.string "producer"
     t.string "director"
-    t.string "choreographer"
-    t.string "music_director"
+    t.string "choreographer", null: true
+    t.string "music_director", null: true
     t.date "opening_date"
     t.date "closing_date"
     t.string "gig_location"
     t.string "pay_rate"
     t.date "audition_date"
     t.string "audition_location"
-    t.string "roles", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["casting_director_id"], name: "index_gigs_on_casting_director_id"
@@ -78,12 +77,12 @@ ActiveRecord::Schema.define(version: 2020_10_08_213621) do
 
   create_table "roles", force: :cascade do |t|
     t.bigint "gig_id", null: false
-    t.string "role_type"
+    t.string "role_type", null: true
     t.string "name"
     t.text "description"
-    t.string "gender"
-    t.integer "beg_age_range"
-    t.integer "end_age_range"
+    t.string "gender", null: true
+    t.integer "beg_age_range", null: true
+    t.integer "end_age_range", null: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["gig_id"], name: "index_roles_on_gig_id"
