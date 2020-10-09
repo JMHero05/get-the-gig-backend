@@ -4,8 +4,12 @@ Rails.application.routes.draw do
       resources :auditions
       resources :roles
       resources :gigs
-      resources :casting_directors
-      resources :actors
+      resources :casting_directors, only: [:create]
+        post 'casting_directors/login', to: 'auth#create'
+        get 'casting_directors/profile', to: 'casting_directors#profile'
+      resources :actors, only: [:create]
+        post 'actors/login', to: 'auth#create'
+        get 'actors/profile', to: 'actors#profile'
     end
   end
 end
