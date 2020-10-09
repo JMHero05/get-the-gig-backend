@@ -1,3 +1,3 @@
 class CastingDirectorSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :password_digest, :agency, :address, :city, :state, :zip
+  attributes :id, :name, :email, :agency, :address, :city, :state, :zip
 end
