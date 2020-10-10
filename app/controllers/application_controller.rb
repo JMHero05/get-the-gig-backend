@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-	require 'pry'
 	before_action :authorized
 
 	def encode_token(payload)
@@ -22,13 +21,12 @@ class ApplicationController < ActionController::API
 	end
 
 	def current_user
-		# binding.pry
-		if decoded_token
+		if decoded_token[0]['admin']
+			user_id = decoded_token[0]['user_id']
+			@user = CastingDirector.find_by(id: user_id)
+		else
 			user_id = decoded_token[0]['user_id']
 			@user = Actor.find_by(id: user_id)
-			if !@user
-				@user = CastingDirector.find_by(id: user_id)
-			end
 		end
 	end
 

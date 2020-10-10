@@ -5,10 +5,10 @@ Rails.application.routes.draw do
       resources :roles
       resources :gigs
       resources :casting_directors, only: [:create]
-        post 'casting_directors/login', to: 'auth#create'
+        post 'casting_directors/login', to: 'auth#create_casting_director'
         get 'casting_directors/profile', to: 'casting_directors#profile'
       resources :actors, only: [:create]
-        post 'actors/login', to: 'auth#create'
+        post 'actors/login', to: 'auth#create_actor'
         get 'actors/profile', to: 'actors#profile'
     end
   end
