@@ -49,3 +49,5 @@ gem 'faker', :git => 'https://github.com/JMHero05/faker', :branch => 'master'
 gem 'figaro'
 
 gem 'pry'
+
+gem 'awesome_print'
