@@ -21,12 +21,14 @@ class ApplicationController < ActionController::API
 	end
 
 	def current_user
-		if decoded_token[0]['admin']
-			user_id = decoded_token[0]['user_id']
-			@user = CastingDirector.find_by(id: user_id)
-		else
-			user_id = decoded_token[0]['user_id']
-			@user = Actor.find_by(id: user_id)
+		if decoded_token
+			if decoded_token[0]['admin']
+				casting_director_id = decoded_token[0]['casting_director_id']
+				@user = CastingDirector.find_by(id: casting_director_id)
+			else
+				user_id = decoded_token[0]['user_id']
+				@user = Actor.find_by(id: user_id)
+			end
 		end
 	end
 
