@@ -1,9 +1,14 @@
 class Api::V1::CastingDirectorsController < ApplicationController
-  skip_before_action :authorized, only: [:create]
+  skip_before_action :authorized, only: [:create, :show]
 
   def profile
     render json: { casting_director: CastingDirectorSerializer.new(current_user) }, status: :accepted
   end
+
+  def show
+		casting_director = CastingDirector.find(params[:id])
+		render json: casting_director
+	end
 
 	def create
     @casting_director = CastingDirector.create(casting_director_params)
