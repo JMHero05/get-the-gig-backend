@@ -77,7 +77,7 @@ end
 		opening_date: Faker::Date.between(from: '2021-01-01', to: '2021-03-31'),
 		closing_date: Faker::Date.between(from: '2021-04-01', to: '2021-06-30'),
 		gig_location: theatre_locations,
-		pay_rate: "$#{rand(300...1000)}/week",
+		pay_rate: "#{rand(300...1000)}/week",
 		audition_date: Faker::Date.between(from: 14.days.from_now, to: 60.days.from_now), 
 		audition_location: audition_locations
 	)
