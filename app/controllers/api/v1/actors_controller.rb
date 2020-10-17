@@ -1,9 +1,5 @@
 class Api::V1::ActorsController < ApplicationController
   skip_before_action :authorized, only: [:create]
-
-  def profile
-    render json: { actor: ActorSerializer.new(current_user) }, status: :accepted
-  end
 	
 	def create
     @actor = Actor.create(actor_params)

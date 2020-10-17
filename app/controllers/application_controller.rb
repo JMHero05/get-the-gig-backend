@@ -26,8 +26,8 @@ class ApplicationController < ActionController::API
 				casting_director_id = decoded_token[0]['casting_director_id']
 				@user = CastingDirector.find_by(id: casting_director_id)
 			else
-				user_id = decoded_token[0]['user_id']
-				@user = Actor.find_by(id: user_id)
+				actor_id = decoded_token[0]['actor_id']
+				@user = Actor.find_by(id: actor_id)
 			end
 		end
 	end

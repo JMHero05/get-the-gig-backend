@@ -2,7 +2,11 @@ class Api::V1::CastingDirectorsController < ApplicationController
   skip_before_action :authorized, only: [:create, :show]
 
   def profile
-    render json: { casting_director: CastingDirectorSerializer.new(current_user) }, status: :accepted
+    if current_user.is_a?(CastingDirector)
+      render json: { casting_director: CastingDirectorSerializer.new(current_user) }, status: :accepted
+    else
+      render json: { actor: ActorSerializer.new(current_user) }, status: :accepted
+    end
   end
 
   def show

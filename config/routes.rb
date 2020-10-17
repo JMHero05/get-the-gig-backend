@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :gigs
       resources :casting_directors, only: [:create, :show]
         post 'casting_directors/login', to: 'auth#create_casting_director'
-        get 'casting/profile', to: 'casting_directors#profile'
+        get 'users/profile', to: 'casting_directors#profile'
       resources :actors, only: [:create]
         post 'actors/login', to: 'auth#create_actor'
         get 'actors/profile', to: 'actors#profile'
