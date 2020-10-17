@@ -1,14 +1,11 @@
 class Api::V1::AuthController < ApplicationController
 	skip_before_action :authorized, only: [:create_actor, :create_casting_director]
 
-	require 'pry'
-
 	def create_actor
 		@actor = Actor.find_by(email: actor_login_params[:email])
-
 		if @actor && @actor.authenticate(actor_login_params[:password])
-			token = encode_token({ user_id: @actor.id, admin: false })
-			render json: { actor: ActorSerializer.new(@actor), jwt: token }, status: :accepted
+			token = encode_token({ actor_id: @actor.id, admin: false })
+			render json: { user: ActorSerializer.new(@actor), jwt: token }, status: :accepted
 		else
 			render json: { message: 'Invalid credentials for Actor. Try again, or log in as Casting Director' }, status: :unauthorized
 		end
