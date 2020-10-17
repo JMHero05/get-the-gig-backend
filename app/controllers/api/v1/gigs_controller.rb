@@ -3,7 +3,7 @@ class Api::V1::GigsController < ApplicationController
 require 'pry'
 
 	def index
-		gigs = Gig.all
+		gigs = Gig.all.order('created_at DESC')
 		render json: gigs
 	end
 	
@@ -17,6 +17,12 @@ require 'pry'
 		# dig_gig = gig_params.dig
 		gig = Gig.create(gig_params)
 		render json: gig.to_json
+	end
+
+	def destroy
+		gig = Gig.find(params[:id])
+		destroyed = gig.destroy
+		render json: destroyed
 	end
 
 
