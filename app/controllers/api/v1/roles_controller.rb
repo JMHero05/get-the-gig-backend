@@ -6,6 +6,11 @@ class Api::V1::RolesController < ApplicationController
 		render json: role
 	end
 
+	def show
+		role = Role.find(params[:id])
+		render json: role
+	end
+
 	private
 
 	def role_params
