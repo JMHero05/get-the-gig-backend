@@ -1,5 +1,5 @@
 class Api::V1::CastingDirectorsController < ApplicationController
-  skip_before_action :authorized, only: [:create, :show]
+  skip_before_action :authorized, only: [:create, :show, :auditions]
 
   def profile
     if current_user.is_a?(CastingDirector)
@@ -23,6 +23,12 @@ class Api::V1::CastingDirectorsController < ApplicationController
       render json: { error: 'failed to create user' }, status: :not_acceptable
     end
   end
+
+  def auditions
+		roles = Role.where("gig_id = #{params[:id]}")
+
+    render json: roles
+	end
 
 	private
 	
