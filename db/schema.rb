@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_213621) do
+ActiveRecord::Schema.define(version: 2020_10_20_234647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_10_08_213621) do
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "requested", default: true
+    t.boolean "confirmed", default: false
+    t.boolean "rejected", default: false
     t.index ["actor_id"], name: "index_auditions_on_actor_id"
     t.index ["role_id"], name: "index_auditions_on_role_id"
   end
@@ -62,8 +65,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_213621) do
     t.boolean "union"
     t.string "producer"
     t.string "director"
-    t.string "choreographer", null: true
-    t.string "music_director", null: true
+    t.string "choreographer"
+    t.string "music_director"
     t.date "opening_date"
     t.date "closing_date"
     t.string "gig_location"
@@ -77,12 +80,12 @@ ActiveRecord::Schema.define(version: 2020_10_08_213621) do
 
   create_table "roles", force: :cascade do |t|
     t.bigint "gig_id", null: false
-    t.string "role_type", null: true
+    t.string "role_type"
     t.string "name"
     t.text "description"
-    t.string "gender", null: true
-    t.integer "beg_age_range", null: true
-    t.integer "end_age_range", null: true
+    t.string "gender"
+    t.integer "beg_age_range"
+    t.integer "end_age_range"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["gig_id"], name: "index_roles_on_gig_id"

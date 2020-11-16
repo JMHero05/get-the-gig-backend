@@ -94,3 +94,15 @@ end
 		end_age_range: Faker::Number.between(from: 31, to: 80),
 	)
 end
+
+audition_dates = Gig.all.map{|gig| gig[:audition_date]}.sample
+
+30.times do
+	Audition.create!(
+		actor_id: Actor.all.ids.sample,
+		role_id: Role.all.ids.sample,
+		time: Faker::Time.between_dates(from: audition_dates, to: audition_dates, period: :afternoon),
+		location: audition_locations,
+		date: Faker::Time.between_dates(from: audition_dates, to: audition_dates),
+	)
+end
